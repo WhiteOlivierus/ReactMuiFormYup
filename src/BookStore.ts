@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 export const bookTypes = ["Hard-cover", "Soft-cover"];
 
-interface Book {
+export interface Book {
   type: string;
   title: string;
   amount: number;
