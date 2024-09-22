@@ -3,9 +3,9 @@ import * as yup from "yup";
 export const bookTypes = ["Hard-cover", "Soft-cover"];
 
 export interface Book {
-  type: string;
   title: string;
   amount: number;
+  binding: string;
 }
 
 export interface BookStore {
@@ -19,14 +19,15 @@ export const bookStoreValidationScheme = yup.object().shape({
     .array()
     .of(
       yup.object().shape({
-        type: yup.string().required("Book type is required"),
         title: yup.string().required("Book title is required"),
         amount: yup
           .number()
           .required("Amount is required")
           .positive("Amount must be more than 1")
           .integer("Amount must be an integer"),
+        binding: yup.string().required("Book type is required"),
       })
     )
-    .min(1, "You need to add at least one book"),
+    .min(1, "You need to add at least one book")
+    .required("You need to add at least one book"),
 });
